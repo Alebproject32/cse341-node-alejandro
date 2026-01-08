@@ -1,9 +1,17 @@
 const express = require('express');
 const app = express();
-const port = 3000;
+const mongodb = require('./db/connect');  //Import our connections
+const port = process.env.PORT || 3000;
 
 app.use('/', require('./routes',));
 
-app.listen(port, () => {
-    console.log('Server runs in port ${port}');
+//Initialize DataBase
+mongodb.initDb((err) => {
+    if (err) {
+        console.log(err);
+    } else {
+        app.listen(port, () => {
+    console.log(`Database connected and server is listening in port ${port}`);
+        });
+    }
 });
