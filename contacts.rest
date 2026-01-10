@@ -1,0 +1,14 @@
+### Get all contacts (Local)
+GET http://localhost:8080/contacts
+
+### Get contact by ID (Local)
+GET http://localhost:8080/contacts/695f0e603dcd9a508cb13954
+
+### Get professionals data (Use in frontend)
+GET http://localhost:8080/professional
+
+### GET all contacts (RENDER)
+GET https://cse341-node-alejandro.onrender.com/contacts
+
+### GET contact by id (RENDER)
+GET https://cse341-node-alejandro.onrender.com/contacts/695f0e603dcd9a508cb13954
