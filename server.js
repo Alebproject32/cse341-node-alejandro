@@ -4,8 +4,13 @@ const mongodb = require('./db/connect');  //Import our connections
 const port = process.env.PORT || 8080;
 const cors = require('cors');
 
+// Middlewares first
 app.use(cors());
+app.use(express.json()); // this will help me that my API could read JSON files.
+
+// Routes
 app.use('/', require('./routes',));
+
 
 //Initialize DataBase
 mongodb.initDb((err) => {
