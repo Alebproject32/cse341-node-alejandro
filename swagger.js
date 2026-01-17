@@ -6,7 +6,7 @@ const doc = {
     description: "API to manage contacts - CSE341",
   },
   host: "cse341-node-alejandro.onrender.com",
-  schemes: ["http"],
+  schemes: ["https"],
 };
 
 const outputFile = "./swagger.json"; // It will be generated automatically
