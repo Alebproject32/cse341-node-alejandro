@@ -4,7 +4,7 @@ const { ObjectId } = require("mongodb");
 //first test with function "getContacts"
 //const getContacts = async (req, res) => {
 //swagger.tags = ['Users']
-//const result = await mongodb.getDb().db().collection('contacts').find();
+//const result = await mongodb.getDb().collection('contacts').find();
 //result.toArray().then((lists) => {
 //res.setHeader('Content-Type', 'application/json');
 //res.status(200).json(lists);
@@ -20,11 +20,7 @@ const getContacts = async (req, res) => {
   }
 
   try {
-    const result = await mongodb
-      .getDb()
-      .db("cse341")
-      .collection("contacts")
-      .find(query);
+    const result = await mongodb.getDb().collection("contacts").find(query);
     result.toArray().then((lists) => {
       res.setHeader("Content-Type", "application/json");
       res.status(200).json(lists);
@@ -41,7 +37,6 @@ const getSingle = async (req, res) => {
     // 1. Usamos getDb() y especificamos la base de datos 'cse341'
     const result = await mongodb
       .getDb()
-      .db("cse341")
       .collection("contacts")
       .find({ _id: contactId });
 
@@ -62,11 +57,7 @@ const getSingle = async (req, res) => {
 
 const getProfessionalData = async (req, res) => {
   try {
-    const result = await mongodb
-      .getDb()
-      .db("cse341")
-      .collection("professional")
-      .find();
+    const result = await mongodb.getDb().collection("professional").find();
 
     result.toArray().then((lists) => {
       if (lists.length > 0) {
@@ -77,13 +68,11 @@ const getProfessionalData = async (req, res) => {
       }
     });
   } catch (err) {
-    res
-      .status(500)
-      .json({
-        message:
-          err.message ||
-          "Error occurred while retrieving dataSome error occurred",
-      });
+    res.status(500).json({
+      message:
+        err.message ||
+        "Error occurred while retrieving dataSome error occurred",
+    });
   }
 };
 
@@ -97,7 +86,6 @@ const createContact = async (req, res) => {
   };
   const response = await mongodb
     .getDb()
-    .db()
     .collection("contacts")
     .insertOne(contact);
   if (response.acknowledged) {
@@ -106,7 +94,7 @@ const createContact = async (req, res) => {
     res
       .status(500)
       .json(
-        response.error || "Some error occurred while creating the contact."
+        response.error || "Some error occurred while creating the contact.",
       );
   }
 };
@@ -123,7 +111,6 @@ const updateContact = async (req, res) => {
     };
     const response = await mongodb
       .getDb()
-      .db("cse341")
       .collection("contacts")
       .replaceOne({ _id: contactId }, contact);
 
@@ -133,7 +120,7 @@ const updateContact = async (req, res) => {
       res
         .status(500)
         .json(
-          response.error || "Some error occurred while updating the contact."
+          response.error || "Some error occurred while updating the contact.",
         );
     }
   } catch (err) {
@@ -146,7 +133,6 @@ const deleteContact = async (req, res) => {
     const contactId = new ObjectId(req.params.id);
     const response = await mongodb
       .getDb()
-      .db("cse341")
       .collection("contacts")
       .deleteOne({ _id: contactId });
 
@@ -156,7 +142,7 @@ const deleteContact = async (req, res) => {
       res
         .status(500)
         .json(
-          response.error || "Some error occurred while deleting the contact."
+          response.error || "Some error occurred while deleting the contact.",
         );
     }
   } catch (err) {
