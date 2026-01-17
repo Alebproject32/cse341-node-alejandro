@@ -5,7 +5,7 @@ const doc = {
     title: "My Contacts API",
     description: "API to manage contacts - CSE341",
   },
-  host: "localhost:8080",
+  host: "cse341-node-alejandro.onrender.com",
   schemes: ["http"],
 };
 
