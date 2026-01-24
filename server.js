@@ -3,7 +3,7 @@ const app = express();
 //This is my Old connection to my Database in Mongodb
 //const mongodb = require('./db/connect');  //Import our connections
 
-const connectDB = require(".db/connect"); //My new connection to Mongoose
+const connectDB = require("./db/connect"); //My new connection to Mongoose
 const port = process.env.PORT || 8080;
 const cors = require("cors");
 
