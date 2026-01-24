@@ -24,18 +24,9 @@
     "/professional": {
       "get": {
         "description": "",
-        "produces": [
-          "application/json"
-        ],
         "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
+          "default": {
+            "description": ""
           }
         }
       }
@@ -43,16 +34,6 @@
     "/contacts/": {
       "get": {
         "description": "",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "favoriteColor",
-            "in": "query",
-            "type": "string"
-          }
-        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -63,30 +44,17 @@
         }
       },
       "post": {
-        "description": "",
+        "tags": [
+          "Contacts"
+        ],
+        "description": "Creates a new contact",
         "parameters": [
           {
             "name": "body",
             "in": "body",
+            "description": "Contact information",
             "schema": {
-              "type": "object",
-              "properties": {
-                "firstName": {
-                  "example": "any"
-                },
-                "lastName": {
-                  "example": "any"
-                },
-                "email": {
-                  "example": "any"
-                },
-                "favoriteColor": {
-                  "example": "any"
-                },
-                "birthday": {
-                  "example": "any"
-                }
-              }
+              "$ref": "#/definitions/Contact"
             }
           }
         ],
@@ -94,8 +62,8 @@
           "201": {
             "description": "Created"
           },
-          "500": {
-            "description": "Internal Server Error"
+          "400": {
+            "description": "Bad Request"
           }
         }
       }
@@ -103,9 +71,6 @@
     "/contacts/{id}": {
       "get": {
         "description": "",
-        "produces": [
-          "application/json"
-        ],
         "parameters": [
           {
             "name": "id",
@@ -120,9 +85,6 @@
           },
           "404": {
             "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
           }
         }
       },
@@ -134,38 +96,17 @@
             "in": "path",
             "required": true,
             "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "firstName": {
-                  "example": "any"
-                },
-                "lastName": {
-                  "example": "any"
-                },
-                "email": {
-                  "example": "any"
-                },
-                "favoriteColor": {
-                  "example": "any"
-                },
-                "birthday": {
-                  "example": "any"
-                }
-              }
-            }
           }
         ],
         "responses": {
           "204": {
             "description": "No Content"
           },
-          "500": {
-            "description": "Internal Server Error"
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       },
@@ -183,9 +124,39 @@
           "204": {
             "description": "No Content"
           },
+          "404": {
+            "description": "Not Found"
+          },
           "500": {
             "description": "Internal Server Error"
           }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Contact": {
+      "type": "object",
+      "properties": {
+        "firstName": {
+          "type": "string",
+          "example": "Isaac"
+        },
+        "lastName": {
+          "type": "string",
+          "example": "Brito"
+        },
+        "email": {
+          "type": "string",
+          "example": "isaac@example.com"
+        },
+        "favoriteColor": {
+          "type": "string",
+          "example": "White"
+        },
+        "birthday": {
+          "type": "string",
+          "example": "1990-01-01"
         }
       }
     }
